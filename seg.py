@@ -13,7 +13,7 @@ with col1:
 
 with col2:
   st.write("Preview Image")
-  st.image(image, channels="BGR")
+  st.image(image)
 
 
 if image is not None:
@@ -24,5 +24,4 @@ if image is not None:
   if st.button("Download"):
     cv2.imwrite(save_filename, img1)
     st.success('Download successfully `%s`' % save_filename, icon=":material/check_circle:")
-    plt.imshow(img1)
-  st.image(img1, channels='BGR')
+  st.image(img1)

@@ -12,7 +12,7 @@ with col1:
   image = cv2.imread(filename)
 with col2:
   st.write("Preview Image")
-  st.image(image, channels="BGR")
+  st.image(image)
 
 if image is not None:
   threshold = st.slider('Select your left & right threshold for Canny', 0, 255, (100, 200))
