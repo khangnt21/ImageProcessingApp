@@ -13,14 +13,14 @@ def file_selector(task, folder_path="img/"):
 def convert_RGB2Gray(image):
   return cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
-def EdgeDetect(gray, thres):
-  if gray.shape[2] is not None:
-    gray = convert_RGB2Gray(gray)
-  blurred = cv2.GaussianBlur(gray, (5, 5), 1)
+def EdgeDetect(image, thres):
+  if image.shape[2] is not None:
+    image = convert_RGB2Gray(image)
+  blurred = cv2.GaussianBlur(image, (5, 5), 1)
   canny = cv2.Canny(blurred, thres[0], thres[1])
   return canny
 
-def ObjSeg(gray, thres):
+def ObjSeg(image, thres):
   color_mapping = {
     1: [68, 1, 84],
     2: [72, 40, 120],
@@ -33,11 +33,11 @@ def ObjSeg(gray, thres):
     9: [180, 222, 44],
     10: [253, 231, 37]
   }
-  if gray.shape[2] is not None:
-    gray = convert_RGB2Gray(gray)
-  ImageSeg = np.ones_like(gray)
+  if image.shape[2] is not None:
+    image = convert_RGB2Gray(image)
+  ImageSeg = np.ones_like(image)
   for i, thres in enumerate(thres):
-    ImageSeg[gray > thres] = i+2
+    ImageSeg[image > thres] = i+2
 
   height, width = ImageSeg.shape
   color_matrix = np.zeros((height, width, 3), dtype=np.uint16)

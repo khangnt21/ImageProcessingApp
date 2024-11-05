@@ -13,7 +13,7 @@ if img_file is not None:
   image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
   st.image(image)
   filename = "img/" + img_file.name.split('.')[0] + '_0.' +  img_file.name.split('.')[-1]
-  cv2.imwrite(filename, image)
+  cv2.imwrite(filename, cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
   st.write(image.shape)
 
 filename = file_selector("img/")
