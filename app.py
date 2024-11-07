@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st # type: ignore
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,7 +16,7 @@ pg = st.navigation([
     st.Page("exc.py", title="Extract Color", icon=":material/layers:"),
     st.Page("edge.py", title="Edge Detection", icon=":material/draw:"),
     st.Page("seg.py", title="Object Segmentation", icon=":material/category:"),
-    st.Page("snr.py", title="Rotation & Scale", icon=":material/frame_reload:"),
-    st.Page("function.py", title="Update", icon=":material/edit:"),
+    st.Page("Edit.py", title="Edit Image", icon=":material/tune:"),
+    st.Page("crop.py", title="Update", icon=":material/edit:"),
 ])
 pg.run()

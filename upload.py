@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st # type: ignore
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,11 +14,14 @@ if img_file is not None:
   st.image(image)
   filename = "img/" + img_file.name.split('.')[0] + '_0.' +  img_file.name.split('.')[-1]
   cv2.imwrite(filename, cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
+  # cv2.imwrite(filename, image)
   st.write(image.shape)
 
 filename = file_selector("img/")
 st.write('You choose `%s`' % filename)
 image = cv2.imread(filename)
-
+image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 st.write("Preview Image")
 st.image(image)
+
+
