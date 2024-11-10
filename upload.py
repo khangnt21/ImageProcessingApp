@@ -1,7 +1,3 @@
-import streamlit as st # type: ignore
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
 from function import *
 
 st.header("Upload your image to process!")

@@ -4,6 +4,5 @@ opencv-python==4.10.0.84
 streamlit==1.39.0
 streamlit-image-coordinates==0.2.0
 streamlit_cropperjs==0.0.9
-fitz==0.0.1.dev2
-pymupdf==1.24.13
+pillow==10.4.0
 pyperclip==1.9.0
