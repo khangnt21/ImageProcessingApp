@@ -1,9 +1,7 @@
-import streamlit as st # type: ignore
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
 from function import *
 from upload import *
+
+
 
 col1, col2 = st.columns(2)
 with col1:
@@ -47,13 +45,21 @@ with col1:
 with col2:
   st.write("Preview Image")
   if toggle:
-    st.image(convert_RGB2Gray(image))
+    # st.image(convert_RGB2Gray(image))
+    h, w = image.shape[:2]
+    gray = convert_RGB2Gray(image)
+    col_pos = streamlit_image_coordinates(Image.fromarray(gray, 'L'),
+              key="pil",use_column_width="always", click_and_drag=False)
+    cpos = [col_pos["y"]/col_pos["height"]*h, 
+            col_pos["x"]/col_pos["width"]*w] 
+    cpos = np.round(np.array(cpos)).astype(np.int16)
+    color = gray[cpos[0], cpos[1]]
+    st.write(color)
   else:
     st.image(image)
 
 # Display color legend for each segmented region?
-
-
+display_color()
 if image is not None:
   thres = st.columns(value)
   threshold = np.zeros(value)
@@ -74,4 +80,3 @@ if image is not None:
     cv2.imwrite(save_filename, cv2.cvtColor(img1, cv2.COLOR_RGB2BGR))
     st.success('Download successfully `%s`' % save_filename,
                 icon=":material/check_circle:")
-  

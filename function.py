@@ -1,9 +1,27 @@
-import streamlit as st # type: ignore
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
 import os
 
+import cv2
+import numpy as np
+import pandas as pd
+from PIL import Image
+import matplotlib.pyplot as plt
+
+import pyperclip # type: ignore
+import streamlit as st # type: ignore
+from streamlit_cropper import st_cropper # type: ignore
+from streamlit_image_coordinates import streamlit_image_coordinates # type: ignore
+
+color_mapping = {
+  1: [68, 1, 84],
+  2: [72, 40, 120],
+  3: [62, 74, 137],
+  4: [49, 104, 142],
+  5: [38, 130, 142],
+  6: [31, 158, 137],
+  7: [53, 183, 121],
+  8: [109, 205, 89],
+  9: [180, 222, 44]
+}
 
 def update_slider():
   st.session_state.slider = st.session_state.numeric
@@ -19,7 +37,7 @@ def update_numeric2inp():
   
 def rgb2hex(color):
   r,g,b = color[0], color[1], color[2]  
-  return "#{:02x}{:02x}{:02x}".format(r,g,b)
+  return "#{:02x}{:02x}{:02x}".format(r,g,b), "#{:02x}0000".format(r), "#00{:02x}00".format(g), "#0000{:02x}".format(b)
 
 def ColorConvert(img_path, mode='gray'):
   bgr = cv2.imread(img_path)
@@ -65,19 +83,16 @@ def EdgeDetect(image, thres):
   canny = cv2.Canny(blurred, thres[0], thres[1])
   return canny
 
+def display_color():
+  hex_color_mapping = {key: '#{:02x}{:02x}{:02x}'.format(*value) 
+                       for key, value in color_mapping.items()}
+  cols = st.columns(9)
+  for i in range(9):
+    with cols[i]:
+      # print(color_mapping.get(i))
+      st.color_picker(f"Color {i+1}", hex_color_mapping.get(i+1))
+
 def ObjSeg(image, thres):
-  color_mapping = {
-    1: [68, 1, 84],
-    2: [72, 40, 120],
-    3: [62, 74, 137],
-    4: [49, 104, 142],
-    5: [38, 130, 142],
-    6: [31, 158, 137],
-    7: [53, 183, 121],
-    8: [109, 205, 89],
-    9: [180, 222, 44],
-    10: [253, 231, 37]
-  }
   if image.shape[2] is not None:
     image = convert_RGB2Gray(image)
   ImageSeg = np.ones_like(image)

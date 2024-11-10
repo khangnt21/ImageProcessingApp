@@ -1,9 +1,4 @@
-import streamlit as st # type: ignore
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
-
-# from upload import *
+import streamlit as st
 
 
 def aboutus():

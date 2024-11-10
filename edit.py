@@ -1,5 +1,3 @@
-from PIL import Image
-from streamlit_cropper import st_cropper
 from function import *
 from upload import *
 
@@ -19,6 +17,7 @@ with col1:
   image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
   
   # Select parameter inputs
+  # Rotation angle
   Atxt, Aslider = st.columns([0.2, 0.8])
   with Atxt:
     angle_txt = st.number_input('Angle', 0, 360, value = 90, 
@@ -28,6 +27,7 @@ with col1:
                        1, key = 'slider', on_change= update_numin)
   scale = st.slider('Select scale level', 0.5, 3.0, 2.0, 0.5)
 
+  # Crop color & ratio
   color, ratio = st.columns([0.2, 0.8])
   with color:
     box_color = st.color_picker(label="Box Color", 
@@ -67,9 +67,6 @@ with col1:
 with col2:
   st.write("Preview Image")
   st.image(image)
-flag = 0
-
-
 
 if image is not None:
   img1 = ScaleRotate(image, scale, angle, zoomout)
