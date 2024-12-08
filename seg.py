@@ -28,7 +28,6 @@ with col1:
                        min_value=2, max_value=9, value = value_txt, step=1, 
                        key = 'slider', on_change = update_numin)
   value = region-1
-
   # Enter saved filename
   save_name = name + "_seg" + str(value)
   saved = st.text_input("Enter save filename", save_name)

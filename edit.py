@@ -77,7 +77,7 @@ if image is not None:
   st.write("Preview Output")
   st.image(cropped_img)
   if download:
-    cv2.imwrite(save_filename, cv2.cvtColor(img1, cv2.COLOR_RGB2BGR))
+    cv2.imwrite(save_filename, cv2.cvtColor(np.array(cropped_img), cv2.COLOR_RGB2BGR))
     st.success('Save image successfully `%s`' % save_filename, 
                 icon=":material/check_circle:")
 
