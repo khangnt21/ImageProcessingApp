@@ -55,4 +55,5 @@ if image is not None:
     cv2.imwrite(save_filename, cv2.cvtColor(img1, cv2.COLOR_RGB2BGR))
     st.success('Download successfully `%s`' % save_filename,
                 icon=":material/check_circle:")
+  st.write("Edge Detected Result")
   st.image(img1)

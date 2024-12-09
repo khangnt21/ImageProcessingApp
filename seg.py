@@ -42,7 +42,9 @@ with col1:
   with gray_tog:
     toggle = st.toggle("Gray Preview")
 with col2:
-  st.write("Preview Image")
+  name, color1 = st.columns([0.4, 0.6])
+  with name:
+    st.write("Preview Image")
   if toggle:
     # st.image(convert_RGB2Gray(image))
     h, w = image.shape[:2]
@@ -53,7 +55,8 @@ with col2:
             col_pos["x"]/col_pos["width"]*w] 
     cpos = np.round(np.array(cpos)).astype(np.int16)
     color = gray[cpos[0], cpos[1]]
-    st.write(color)
+    with color1:
+      st.write(f"Grayscale value = {color}")
   else:
     st.image(image)
 
