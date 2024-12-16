@@ -22,10 +22,14 @@ with col1:
     h, w = rgb_img.shape[:2]  # Image height and width
     
     # Display instructions for the user
-    text = '''1. Drag an area on *Preview Image* to zoom it out
+    text = '''
+    1. Drag an area on *Preview Image* to zoom it out
+    
     2. Click to the target position for color extraction
+    
     3. Click copy icon to copy hexa code'''
     st.markdown(text)
+    st.text_input("Enter your hexa color")
 
 # If the image is loaded successfully, display it and the corresponding color channels
 if rgb_img is not None:
