@@ -34,7 +34,7 @@ pg = st.navigation([
     st.Page("exc.py", title="Extract Color", icon=":material/layers:"),
     st.Page("edge.py", title="Edge Detection", icon=":material/draw:"),
     st.Page("seg.py", title="Object Segmentation", icon=":material/category:"),
-    st.Page("Edit.py", title="Edit Image", icon=":material/tune:")
+    st.Page("edit.py", title="Edit Image", icon=":material/tune:")
 
 ])
 pg.run()
